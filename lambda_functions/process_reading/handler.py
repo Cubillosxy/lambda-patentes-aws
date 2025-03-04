@@ -55,12 +55,10 @@ def lambda_handler(event, context=None):
     
     apply_campaign = False
     if checkpoint_id in CAMPAIGN_RULE["locations"] and within_time_window(timestamp, CAMPAIGN_RULE["time_window"]["start"], CAMPAIGN_RULE["time_window"]["end"]):
-        # Check max exposures per license plate
         exposures_count = count_exposures(license_plate, conn)
         if exposures_count < CAMPAIGN_RULE["max_exposures_per_plate"]:
             apply_campaign = True
 
-    # If campaign applies, store an exposure record
     if apply_campaign:
         cur.execute(
             "INSERT INTO exposures (reading_id, campaign_id, ad_content, timestamp) VALUES (?, ?, ?, ?)",

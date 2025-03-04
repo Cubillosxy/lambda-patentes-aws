@@ -1,5 +1,17 @@
 # lambda-patentes-aws
 
+### architecture diagram 
+
++----------------+        +----------------------+         +-------------------+
+| API Gateway    |  -->   | Lambda Functions     |  -->    | SQLite Database   |
+|  - /process    |        |  - Processing API    |         | (for local tests) |
+|  - /metrics    |        |  - Metrics API       |         +-------------------+
++----------------+        +----------------------+
+          |                          |
+          v                          v
+   (Terraform code)          (CloudWatch Logging)
+
+
 ### Challenge 
 
 Develop a serverless system that processes license plate readings and determines which advertising campaign applies based on a set of basic rules (location, time window, and max exposures per plate). Two APIs are required: one for processing readings and storing exposure results, and another for consulting metrics.
@@ -68,3 +80,18 @@ metrics
 python3 -c "from lambda_functions.metrics.handler import lambda_handler; print(lambda_handler({}))"
 
 ```
+
+### AWS create zips 
+
+- cd lambda_functions/process_reading 
+-  `zip -r ../../process_reading.zip` 
+- cd ../..
+- cd lambda_functions/metrics and  `zip -r ../../metrics.zip .`
+
+
+#### Terraform 
+
+- terraform init
+- terraform plan
+- terraform apply
+- terraform test
