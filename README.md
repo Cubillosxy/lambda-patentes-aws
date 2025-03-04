@@ -2,6 +2,7 @@
 
 ### architecture diagram 
 
+```
 +----------------+        +----------------------+         +-------------------+
 | API Gateway    |  -->   | Lambda Functions     |  -->    | SQLite Database   |
 |  - /process    |        |  - Processing API    |         | (for local tests) |
@@ -10,6 +11,9 @@
           |                          |
           v                          v
    (Terraform code)          (CloudWatch Logging)
+
+```
+![Architectu](https://github.com/Cubillosxy/lambda-patentes-aws/raw/main/docs/arch.png)
 
 
 ### Challenge 
