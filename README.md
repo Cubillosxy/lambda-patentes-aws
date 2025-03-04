@@ -13,8 +13,6 @@
    (Terraform code)          (CloudWatch Logging)
 
 ```
-![Architectu](https://github.com/Cubillosxy/lambda-patentes-aws/raw/main/docs/arch.png)
-
 
 ### Challenge 
 
